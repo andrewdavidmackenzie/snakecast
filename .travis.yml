@@ -1,0 +1,29 @@
+language: android
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-30.0.2
+    - android-30
+    - extra-android-m2repository
+    - addon-google_apis-google-30
+    - extra-android-support
+
+# Avoid double build on PRs - it does a pre-merge to master and then builds that
+branches:
+  only:
+    - "master"
+
+script:
+# TODO re-enable when there is an android project to build
+#    - echo yes | sdkmanager "build-tools;30.0.2"
+#    - cd sender && ./gradlew build
+
+deploy:
+  provider: pages
+  github-token: $GITHUB_PAGES_TOKEN
+  skip_cleanup: true
+  local-dir: receiver
+  keep-history: false
+  on:
+    branch: master
