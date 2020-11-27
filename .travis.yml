@@ -15,8 +15,8 @@ branches:
     - "master"
 
 script:
+    - echo yes | sdkmanager "build-tools;30.0.2"
 # TODO re-enable when there is an android project to build
-#    - echo yes | sdkmanager "build-tools;30.0.2"
 #    - cd sender && ./gradlew build
 
 deploy:
