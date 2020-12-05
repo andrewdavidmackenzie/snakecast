@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name" translatable="false">SnakeCast</string>
+    <!-- See https://cast.google.com/publish/#/overview for publishing of Cast apps and their IDs -->
     <string name="app_id" translatable="false">4BD774D2</string>
 	<!-- This must match the one defined in the receiver.html -->
     <string name="namespace" translatable="false">urn:x-cast:net.mackenzie.snakecast</string>
