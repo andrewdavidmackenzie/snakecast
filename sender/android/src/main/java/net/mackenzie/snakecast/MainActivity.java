@@ -13,22 +13,22 @@ import net.mackenzie.chromeinteractor.ChromecastInteractor;
  * Main activity of the application
  */
 public class MainActivity extends AppCompatActivity {
-    private PongController pongController;
+    private SnakeController snakeController;
     private ChromecastInteractor chromecastInteractor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        pongController = new PongController(this);
-        new PongControllerView(this, pongController);
+        snakeController = new SnakeController(this);
+        new SnakeControllerView(this, snakeController);
         chromecastInteractor = new ChromecastInteractor(this, getString(R.string.app_id), getString(R.string.namespace),
-                pongController);
+                snakeController);
     }
 
     @Override
     protected void onPause() {
-        pongController.pause();
+        snakeController.pause();
         chromecastInteractor.pause();
         super.onPause();
     }

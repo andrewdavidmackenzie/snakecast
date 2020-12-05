@@ -10,7 +10,7 @@ import net.mackenzie.chromeinteractor.ChromecastInteractor;
 import net.mackenzie.chromeinteractor.GameController;
 
 /**
- * This class implements control of the Pong game, implementing the GameController Interface that permits it to
+ * This class implements control of the Snake game, implementing the GameController Interface that permits it to
  * work in conjunction with the ChromecastInteractor.
  * <p>
  * It holds the logic of what actions can be taken and how the games responds to events, according to the current
@@ -22,13 +22,13 @@ import net.mackenzie.chromeinteractor.GameController;
  * <p/>
  * Copyright Andrew Mackenzie, 2013
  */
-public class PongController implements GameController {
+public class SnakeController implements GameController {
     public enum GAME_STATE {
         NO_PADDLE, GOT_PADDLE, GAME_STARTED, GAME_PAUSED, GAME_WON_LOST
     }
 
     // CONSTANTS
-    private static final String LOG_TAG = "PongController";
+    private static final String LOG_TAG = "SnakeController";
 
     // MESSAGES receiver app may send
     private static final String START_GAME_MESSAGE = "StartPlay";
@@ -40,14 +40,14 @@ public class PongController implements GameController {
     private ChromecastInteractor.CHROMECAST_STATE chromecastState = ChromecastInteractor.CHROMECAST_STATE.NO_WIFI;
     private GAME_STATE gameState = GAME_STATE.NO_PADDLE;
     private ChromecastInteractor chromecastInteractor;
-    private PongControllerView gameView;
+    private SnakeControllerView gameView;
     private final Activity activity;
 
-    public PongController(Activity ac) {
+    public SnakeController(Activity ac) {
         activity = ac;
     }
 
-    public void setGameView(PongControllerView gameView) {
+    public void setGameView(SnakeControllerView gameView) {
         this.gameView = gameView;
     }
 

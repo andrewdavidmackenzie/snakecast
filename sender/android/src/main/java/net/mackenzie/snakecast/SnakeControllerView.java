@@ -17,7 +17,7 @@ import net.mackenzie.chromeinteractor.RepeatListener;
 
 /**
  * This class provides view functionality for the controller of the game, such as joining, leaving,
- * moving paddles etc - but not a view of the game itself.
+ * moving etc - but not a view of the game itself, that is on the TV via the receiver.
  *
  * User: andrew
  * Date: 11/01/15
@@ -25,9 +25,9 @@ import net.mackenzie.chromeinteractor.RepeatListener;
  * <p/>
  * Copyright Andrew Mackenzie, 2013
  */
-public class PongControllerView {
+public class SnakeControllerView {
     // CONSTANTS
-    private static final String TAG = "PongControllerView";
+    private static final String TAG = "SnakeControllerView";
 
     // IMMUTABLES
     private final Button startGameButton;
@@ -36,8 +36,8 @@ public class PongControllerView {
     private final AppCompatActivity activity;
 
     @SuppressLint("ClickableViewAccessibility")
-    public PongControllerView(final AppCompatActivity activity,
-                              final PongController pongController) {
+    public SnakeControllerView(final AppCompatActivity activity,
+                               final SnakeController snakeController) {
         this.activity = activity; // Save activity to use when calling `Toast` to send a message
         activity.setContentView(R.layout.activity_main); // Set this `View` intro the activity
 
@@ -51,7 +51,7 @@ public class PongControllerView {
         startGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pongController.startGame();
+                snakeController.startGame();
             }
         });
 
@@ -63,13 +63,13 @@ public class PongControllerView {
         upButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pongController.paddleUp();
+                snakeController.paddleUp();
             }
         });
         upButton.setOnTouchListener(new RepeatListener(300, 80, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pongController.paddleUp();
+                snakeController.paddleUp();
             }
         }));
 
@@ -77,17 +77,17 @@ public class PongControllerView {
         downButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pongController.paddleDown();
+                snakeController.paddleDown();
             }
         });
         downButton.setOnTouchListener(new RepeatListener(300, 80, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pongController.paddleDown();
+                snakeController.paddleDown();
             }
         }));
 
-        pongController.setGameView(this);
+        snakeController.setGameView(this);
     }
 
 
@@ -149,7 +149,7 @@ public class PongControllerView {
      *
      * @param gameState to use to change the views on screen
      */
-    public void setGameState(final PongController.GAME_STATE gameState) {
+    public void setGameState(final SnakeController.GAME_STATE gameState) {
         Log.d(TAG, "setGameState() with courtState = " + gameState);
 
         switch (gameState) {
