@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" translatable="false">SnakeCast</string>
+    <!-- See https://cast.google.com/publish/#/overview for publishing of Cast apps and their IDs -->
+    <string name="app_id" translatable="false">4BD774D2</string>
+	<!-- This must match the one defined in the receiver.html -->
+    <string name="namespace" translatable="false">urn:x-cast:net.mackenzie.snakecast</string>
+
+	<!-- Translatable strings below -->
+	<string name="language">Default</string>
+    <string name="preparing">Preparing court…</string>
+    <string name="waiting">Waiting to get on court…</string>
+	<string name="noRoute">No Chromecasts found, make sure it is powered on</string>
+    <string name="selectRoute">Select a Chromecast to play on</string>
+	<string name="enableWifi">Not connected to WiFi, so cannot find any Chromecast</string>
+    <string name="onCourt">You are on court!</string>
+    <string name="noPaddle">Sorry, no paddle for you!</string>
+
+</resources>
