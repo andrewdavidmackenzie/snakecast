@@ -1,5 +1,6 @@
-#language: android
-#android:
+language: android
+android:
+# TODO re-enable when you want to build android sender project too
 #  components:
 #    - platform-tools
 #    - tools
@@ -15,10 +16,12 @@ branches:
     - "master"
 
 script:
+# TODO re-enable when you want to build android sender project too
 #    - echo yes | sdkmanager "build-tools;30.0.2"
-# TODO re-enable when there is an android project to build
 #    - cd sender && ./gradlew build
 
+# This will deploy the receiver code (html, js, css) to andrewdavidmackenzie.github.io/snakecast
+# when a build of master branch passes
 deploy:
   provider: pages
   github-token: $GITHUB_PAGES_TOKEN
