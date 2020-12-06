@@ -7,7 +7,7 @@ function CastController() {
 
     // create a CastMessageBus to handle messages for a custom namespace
     //noinspection JSUnresolvedVariable,JSUnresolvedFunction
-    window.messageBus = window.castReceiverManager.getCastMessageBus('urn:x-cast:net.mackenzie.pongcast');
+    window.messageBus = window.castReceiverManager.getCastMessageBus('urn:x-cast:net.mackenzie.snakecast');
 
     // handler for the 'ready' event
     castReceiverManager.onReady = function () {
@@ -24,22 +24,22 @@ function CastController() {
         console.log("Players Connected: " + window.castReceiverManager.getSenders().length);
 
         // Keep track of all people connected, indexing them by unique name
-        var player = new ChromecastPlayer(window.court, name);
-        window.players = [];
-        window.players[name] = player;
+//        var player = new ChromecastPlayer(window.court, name);
+//        window.players = [];
+//        window.players[name] = player;
 
         // have the player enter the court
-        var response = window.court.enter(player);
+//        var response = window.court.enter(player);
         // send a message to the player to tell them if they got a paddle and which one
         //noinspection JSUnresolvedFunction,JSUnresolvedVariable
-        var senderChannel = window.messageBus.getCastChannel(event.senderId);
-        senderChannel.send(response);
+//        var senderChannel = window.messageBus.getCastChannel(event.senderId);
+//        senderChannel.send(response);
     };
 
     // handler for 'senderdisconnected' event
     castReceiverManager.onSenderDisconnected = function (event) {
-        //noinspection JSUnresolvedVariable
-        window.court.leave(window.players[event.senderId]);
+ //       //noinspection JSUnresolvedVariable
+        //window.court.leave(window.players[event.senderId]);
 
         // when the last man leaves - switch out the lights
         //noinspection JSUnresolvedFunction
@@ -58,25 +58,25 @@ function CastController() {
         // handle message
         switch (event.data) {
             case "StartPlay":
-                window.court.startPlay();
+   //             window.court.startPlay();
                 //noinspection JSUnresolvedFunction
                 window.messageBus.broadcast("GAME STARTED");
                 break;
 
             case "PausePlay":
-                window.court.pausePlay();
+     //           window.court.pausePlay();
                 //noinspection JSUnresolvedFunction
                 window.messageBus.broadcast("GAME PAUSED");
                 break;
 
             case "MoveUp":
                 //noinspection JSUnresolvedVariable
-                window.players[event.senderId].updownCount++;
+       //         window.players[event.senderId].updownCount++;
                 break;
 
             case "MoveDown":
                 //noinspection JSUnresolvedVariable
-                window.players[event.senderId].updownCount--;
+         //       window.players[event.senderId].updownCount--;
                 break;
 
             default:
@@ -86,47 +86,47 @@ function CastController() {
     };
 
     // Messages are different depending on the Controller being used
-    window.court.enterMessage = "CONNECT TO CHROMECAST";
-    window.court.startMessage = "CLICK PLAY ICON";
-    window.court.pausedMessage = "CLICK PLAY TO RESTART";
+    //window. court.enterMessage = "CONNECT TO CHROMECAST";
+    //window.court.startMessage = "CLICK PLAY ICON";
+    //window.court.pausedMessage = "CLICK PLAY TO RESTART";
 
     // start the CastReceiverManager with an application status message
-    window.castReceiverManager.start({statusText: "Court is ready"});
+    //window.castReceiverManager.start({statusText: "Court is ready"});
 }
 
 // A subclass of PaddleController, which must implement:
 // updatePaddle(court, paddle, ball)
 // gameOver(won)
-ChromecastPlayer.prototype = new Player();
+//ChromecastPlayer.prototype = new Player();
 
 // ChromecastPlayer that controls a paddle using up and down keys on the keyboard
-function ChromecastPlayer(court, name) {
-    Player.apply(this, court);
-    this.name = name;
-    this.updownCount = 0;
-}
+//function ChromecastPlayer(court, name) {
+  //  Player.apply(this, court);
+    //this.name = name;
+    //this.updownCount = 0;
+//}
 
 /*
  This is called on each update of the screen. Move the paddle corresponding to the number of requests we got
  to move up/down from the sender since the last update
  */
-ChromecastPlayer.prototype.updatePaddle = function () {
-    var movement = -(this.paddle.defaultSpeed * this.updownCount);
-    this.updownCount = 0;
-    return movement;
-};
+//ChromecastPlayer.prototype.updatePaddle = function () {
+  //  var movement = -(this.paddle.defaultSpeed * this.updownCount);
+    //this.updownCount = 0;
+    //return movement;
+//};
 
-ChromecastPlayer.prototype.gameOver = function (won) {
+//ChromecastPlayer.prototype.gameOver = function (won) {
     // send a message to the player to tell them they won or lost
-    try {
+  //  try {
         //noinspection JSUnresolvedFunction
-        var senderChannel = window.messageBus.getCastChannel(this.name);
-        if (won) {
-            senderChannel.send("GAME WON");
-        } else {
-            senderChannel.send("GAME LOST");
-        }
-    } catch (err) {
+    //    var senderChannel = window.messageBus.getCastChannel(this.name);
+      //  if (won) {
+        //    senderChannel.send("GAME WON");
+        //} else {
+          //  senderChannel.send("GAME LOST");
+        //}
+    //} catch (err) {
         // We might have lost the game because we lost the connection and won't be able to send message
-    }
-};
+    //}
+//};
