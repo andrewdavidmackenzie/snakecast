@@ -1,14 +1,13 @@
 language: android
 android:
-# TODO re-enable when you want to build android sender project too
-#  components:
-#    - platform-tools
-#    - tools
-#    - build-tools-30.0.2
-#    - android-30
-#    - extra-android-m2repository
-#    - addon-google_apis-google-30
-#    - extra-android-support
+  components:
+    - platform-tools
+    - tools
+    - build-tools-30.0.2
+    - android-30
+    - extra-android-m2repository
+    - addon-google_apis-google-30
+    - extra-android-support
 
 # Avoid double build on PRs - it does a pre-merge to master and then builds that
 branches:
@@ -16,9 +15,8 @@ branches:
     - "master"
 
 script:
-# TODO re-enable when you want to build android sender project too
-#    - echo yes | sdkmanager "build-tools;30.0.2"
-#    - cd sender && ./gradlew build
+    - echo yes | sdkmanager "build-tools;30.0.2"
+    - cd sender && ./gradlew build
 
 # This will deploy the receiver code (html, js, css) to andrewdavidmackenzie.github.io/snakecast
 # when a build of master branch passes
